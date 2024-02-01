@@ -3,6 +3,8 @@ import bpy
 import xml.etree.ElementTree as ET
 import bmesh
 
+
+# Use Bmesh to create a mesh from from datapoints
 def points_to_mesh(vertices,create_edges):
     
     # generate empty edges
@@ -33,6 +35,7 @@ def points_to_mesh(vertices,create_edges):
 
     # add the new meshyy
     gpx_collection.objects.link(gpx_object)
+
 
 def read_some_data(context, filepath, use_some_setting):
     
