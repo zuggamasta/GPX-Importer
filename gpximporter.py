@@ -37,7 +37,7 @@ def points_to_mesh(vertices,create_edges):
     gpx_collection.objects.link(gpx_object)
 
 
-def read_xml_data(context, filepath, use_some_setting):
+def read_xml_data(context, filepath, use_create_edges, plot_elevation):
     
     print(filepath)    
     tree = ET.parse(filepath)
@@ -59,7 +59,11 @@ def read_xml_data(context, filepath, use_some_setting):
         if is_original:
             for child in root[1][1]:
                 waypoint = list(map(float,child.attrib.values()))
-                waypoint.append(0)
+                elevation = 0
+                if plot_elevation:
+                    elevation = float(child[0].text)
+
+                waypoint.append(elevation)
                 waypoints.append(waypoint)   
         else:
             # This is just tested for one other GPX type
@@ -70,7 +74,7 @@ def read_xml_data(context, filepath, use_some_setting):
         
         vertices = [tuple(item) for item in waypoints]
        
-        points_to_mesh(vertices,use_some_setting)
+        points_to_mesh(vertices,use_create_edges)
     except:
         print("import failed")
 
@@ -100,11 +104,18 @@ class ImportGPXData(Operator, ImportHelper):
 
     # List of operator properties, the attributes will be assigned
     # to the class instance from the operator settings before calling.
-    use_setting: BoolProperty(
+    create_edges: BoolProperty(
         name="Create Edges",
-        description="Creates connecting edges from each datapoint to the next",
+        description="Creates connecting edges from each data point to the next",
         default=True,
     )
+
+    plot_elevation: BoolProperty(
+        name="Plots Elevation",
+        description="Uses the elevation data point as Z-axis",
+        default=True,
+    )
+
 
     ###########################################
     # necessary to support multi-file import
@@ -121,7 +132,7 @@ class ImportGPXData(Operator, ImportHelper):
     def execute(self, context):
         for current_file in self.files:
             filepath = os.path.join(self.directory, current_file.name)
-            read_xml_data(context, filepath, self.use_setting)
+            read_xml_data(context, filepath, self.create_edges, self.plot_elevation)
         return {'FINISHED'}
 
 
