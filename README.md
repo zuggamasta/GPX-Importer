@@ -1,16 +1,13 @@
 # GPX-Importer
 A python GPX importer with multi file support for blender
 
+> [!warning]
+> 1. This importer is currently only available as a script. So it can't be installed as an addon (yet).
+> 2. This importer has currently only been tested with *.GPX files exported from Apple Health
+
+
 ## Usage
-
-> [!warning]
-> This importer is currently only available as a script. So it can't be installed as an addon (yet).
-
-
-> [!warning]
-> This importer has currently only been tested with *.GPX files exported from Apple Health
-
-
+Blender 4.0.X is reccomended 
 1. Open Blender and move into the Scripting viewport
 2. Load the gpximporter.py or copy&paste it's contents into a new script file
 3. Run the script via the ▶️ button.
