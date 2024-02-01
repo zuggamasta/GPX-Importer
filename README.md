@@ -1,2 +1,2 @@
 # GPX-Importer
-A python GPX importer for blender
+A python GPX importer with multi file support for blender
