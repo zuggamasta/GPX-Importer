@@ -15,3 +15,6 @@ Blender 4.0.X is reccomended
 
 > [!info]
 > This importer just plots latitude and longitude in Degrees as X and Y coordinates as Blender Units
+
+
+![Large set of *.GPX rendered at once](_examples/preview.jpg)
