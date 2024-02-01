@@ -1,6 +1,6 @@
 import os
 import bpy
-import xml.etree.ElementTree as ET
+from xml.dom.minidom import parse
 import bmesh
 
 
@@ -40,43 +40,30 @@ def points_to_mesh(vertices,create_edges):
 def read_xml_data(context, filepath, use_create_edges, plot_elevation):
     
     print(filepath)    
-    tree = ET.parse(filepath)
-    root = tree.getroot()
-    
-    # TODO: Remove the "is_original" check and always just iterate over the contents of <trkseg></trkseg> instead of the naiive root[1][1] children
+    xml = parse(filepath)
+    trkpts = xml.getElementsByTagName("trkpt")
 
-    is_original = False
-    # Original Apple Health GPX files have additional data
-    if root[0].tag == "{http://www.topografix.com/GPX/1/1}metadata":
-        is_original = True
-        print("This is a original Apple File")
-    
     try:
         print("running read_gpx... printing *.gpx metadata")
         global waypoints
         waypoints = []
-        
-        if is_original:
-            for child in root[1][1]:
-                waypoint = list(map(float,child.attrib.values()))
-                elevation = 0
-                if plot_elevation:
-                    elevation = float(child[0].text)
 
-                waypoint.append(elevation)
-                waypoints.append(waypoint)   
-        else:
-            # This is just tested for one other GPX type
-            for child in root[0][0]:
-                waypoint = list(map(float,child.attrib.values()))
-                waypoint.append(0)
-                waypoints.append(waypoint)
-        
-        vertices = [tuple(item) for item in waypoints]
-       
-        points_to_mesh(vertices,use_create_edges)
+        for trkpt in trkpts:
+            elevation = 0
+            if plot_elevation:
+                elevation = float(trkpt.getElementsByTagName("ele")[0].firstChild.nodeValue)
+                        
+            waypoint = (float(trkpt.attributes["lon"].value), float(trkpt.attributes["lat"].value), elevation)
+            waypoints.append(waypoint)
+     
+        print(waypoints)
+        points_to_mesh(waypoints,use_create_edges)
+
     except:
         print("import failed")
+
+       
+    
 
     return {'FINISHED'}
 
@@ -111,7 +98,7 @@ class ImportGPXData(Operator, ImportHelper):
     )
 
     plot_elevation: BoolProperty(
-        name="Plots Elevation",
+        name="Plot Elevation",
         description="Uses the elevation data point as Z-axis",
         default=True,
     )
