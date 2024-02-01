@@ -1,5 +1,6 @@
 # GPX-Importer
 A python GPX importer with multi file support for blender
+![Large set of *.GPX rendered at once](_examples/preview.jpg)
 
 > [!note]
 > 1. This importer is currently only available as a script. So it can't be installed as an addon (yet).
@@ -17,4 +18,3 @@ Blender 4.0.X is reccomended
 > This importer just plots latitude and longitude in Degrees as X and Y coordinates as Blender Units
 
 
-![Large set of *.GPX rendered at once](_examples/preview.jpg)
