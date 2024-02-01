@@ -1,7 +1,7 @@
 # GPX-Importer
 A python GPX importer with multi file support for blender
 
-> [!warning]
+> [!note]
 > 1. This importer is currently only available as a script. So it can't be installed as an addon (yet).
 > 2. This importer has currently only been tested with *.GPX files exported from Apple Health
 
@@ -13,7 +13,7 @@ Blender 4.0.X is reccomended
 3. Run the script via the ▶️ button.
 4. Each GPX file will be imported in it's own collection
 
-> [!info]
+> [!note]
 > This importer just plots latitude and longitude in Degrees as X and Y coordinates as Blender Units
 
 
