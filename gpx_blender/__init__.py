@@ -30,7 +30,7 @@ from xml.dom.minidom import parse
 import bmesh
 
 # Use Bmesh to create a mesh from from datapoints
-def points_to_mesh(vertices,create_edges):
+def points_to_mesh(vertices,create_edges,object_name):
     
     # generate empty edges
     edges = []
@@ -52,24 +52,24 @@ def points_to_mesh(vertices,create_edges):
     gpx_mesh.update()
 
     # generate object
-    gpx_object = bpy.data.objects.new('gpx', gpx_mesh)
+    gpx_object = bpy.data.objects.new(object_name, gpx_mesh)
 
     # generaate new collection to add the object to
-    gpx_collection = bpy.data.collections.new('gpx_collection')
+    gpx_collection = bpy.data.collections.new('gpx')
     bpy.context.scene.collection.children.link(gpx_collection)
 
     # add the new meshyy
     gpx_collection.objects.link(gpx_object)
 
 
-def read_xml_data(context, filepath, use_create_edges, plot_elevation):
+def read_gpx_data(context, filepath, use_create_edges, plot_elevation):
     
-    print(filepath)    
     xml = parse(filepath)
     trkpts = xml.getElementsByTagName("trkpt")
+    routename = xml.getElementsByTagName("name")[0].firstChild.nodeValue
 
     try:
-        print("running read_gpx... printing *.gpx metadata")
+        print("Importing: " + routename + " ...",end=' ')
         global waypoints
         waypoints = []
 
@@ -80,12 +80,12 @@ def read_xml_data(context, filepath, use_create_edges, plot_elevation):
                         
             waypoint = (float(trkpt.attributes["lon"].value), float(trkpt.attributes["lat"].value), elevation)
             waypoints.append(waypoint)
-     
-        print(waypoints)
-        points_to_mesh(waypoints,use_create_edges)
-
+        
+        print("Imported " + str(len(trkpts)) + " track points. Creating Mesh...",end=' ')
+        points_to_mesh(waypoints,use_create_edges,routename)
+        print("Done.")
     except:
-        print("import failed")
+        print("Import failed. Try to disable import elevation.")
 
     return {'FINISHED'}
 
@@ -121,7 +121,7 @@ class ImportGPXData(Operator, ImportHelper):
     plot_elevation: BoolProperty(
         name="Plot Elevation",
         description="Uses the elevation data point as Z-axis",
-        default=True,
+        default=False,
     )
 
 
@@ -140,7 +140,7 @@ class ImportGPXData(Operator, ImportHelper):
     def execute(self, context):
         for current_file in self.files:
             filepath = os.path.join(self.directory, current_file.name)
-            read_xml_data(context, filepath, self.create_edges, self.plot_elevation)
+            read_gpx_data(context, filepath, self.create_edges, self.plot_elevation)
         return {'FINISHED'}
 
 
