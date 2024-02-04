@@ -3,8 +3,10 @@ A python GPX importer with multi file support for blender.
 
 ![Large set of *.GPX rendered at once](_examples/preview.jpg)
 
+> [!update]
+> Nov available as addon
+
 > [!note]
-> 1. This importer is currently only available as a script. So it can't be installed as an addon (yet).
 > 2. This importer has currently only been tested with *.GPX files exported from Apple Health
 
 

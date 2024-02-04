@@ -1,8 +1,33 @@
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+# General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+bl_info = {
+    "name" : "GPS Exchange Format (.gpx)",
+    "author" : "zuggamasta",
+    "description" : "",
+    "blender" : (4, 0, 2),
+    "version" : (0, 9, 1),
+    "location" : "",
+    "doc_url": "{BLENDER_MANUAL_URL}/addons/import_export/scene_gltf2.html",
+    "tracker_url": "https://github.com/KhronosGroup/glTF-Blender-IO/issues/",
+    "warning" : "",
+    "category" : "Import-Export"
+}
+
 import os
 import bpy
 from xml.dom.minidom import parse
 import bmesh
-
 
 # Use Bmesh to create a mesh from from datapoints
 def points_to_mesh(vertices,create_edges):
@@ -62,9 +87,6 @@ def read_xml_data(context, filepath, use_create_edges, plot_elevation):
     except:
         print("import failed")
 
-       
-    
-
     return {'FINISHED'}
 
 
@@ -73,7 +95,6 @@ def read_xml_data(context, filepath, use_create_edges, plot_elevation):
 from bpy_extras.io_utils import ImportHelper
 from bpy.props import StringProperty, BoolProperty, EnumProperty, CollectionProperty
 from bpy.types import Operator
-
 
 class ImportGPXData(Operator, ImportHelper):
     """This appears in the tooltip of the operator and in the generated docs"""
@@ -125,10 +146,10 @@ class ImportGPXData(Operator, ImportHelper):
 
 # Only needed if you want to add into a dynamic menu.
 def menu_func_import(self, context):
-    self.layout.operator(ImportGPXData.bl_idname, text="Text Import Operator")
+    self.layout.operator(ImportGPXData.bl_idname, text="GPS Exchange Format (.gpx)")
 
 
-# Register and add to the "file selector" menu (required to use F3 search "Text Import Operator" for quick access).
+# Register and add to the "file selector" menu (required to use F3 search "GPS Exchange Format (.gpx)" for quick access).
 def register():
     bpy.utils.register_class(ImportGPXData)
     bpy.types.TOPBAR_MT_file_import.append(menu_func_import)
