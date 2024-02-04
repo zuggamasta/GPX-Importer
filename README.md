@@ -11,14 +11,15 @@ A python GPX importer with multi file support for blender.
 
 ## Usage
 Blender 4.0.X is recommended.
-1. Download the [latest release](https://github.com/zuggamasta/GPX-Importer/releases/tag/v0.1.1-alpha) from github
+1. Download the [latest release](https://github.com/zuggamasta/GPX-Importer/releases/tag/v0.1.1-alpha) of this addon from github
 2. Install the gpx_blender.zip file as addon
 3. Make sure the Addon is enabled
 4. Import your files just as other formats via "File > Import > GPS Exchange Format (.gpx)"
 5. Each GPX file will be imported in it's own collection
 
-There are two options available on import, plotting elevation data can be messy so it is not enabled by default.
-- [x] Create Edges
-- [ ] Plot Elevation
+> [!tip]
+> There are two options available on import, plotting elevation data can be messy so it is not enabled by default.
+> - [x] Create Edges
+> - [ ] Plot Elevation
 
 Make sure to check the objects location in space after import. Imported meshes might be far of screen.
