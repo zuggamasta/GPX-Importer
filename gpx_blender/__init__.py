@@ -16,7 +16,7 @@ bl_info = {
     "author" : "zuggamasta",
     "description" : "",
     "blender" : (4, 0, 2),
-    "version" : (0, 9, 1),
+    "version" : (0, 1, 1),
     "location" : "",
     "doc_url": "{BLENDER_MANUAL_URL}/addons/import_export/scene_gltf2.html",
     "tracker_url": "https://github.com/KhronosGroup/glTF-Blender-IO/issues/",
