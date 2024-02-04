@@ -1,6 +1,9 @@
 # MacOS
 .DS_Store
 
+# Releases as ZIP
+.zip 
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
