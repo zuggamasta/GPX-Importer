@@ -18,8 +18,7 @@ bl_info = {
     "blender" : (4, 0, 2),
     "version" : (0, 1, 1),
     "location" : "",
-    "doc_url": "{BLENDER_MANUAL_URL}/addons/import_export/scene_gltf2.html",
-    "tracker_url": "https://github.com/KhronosGroup/glTF-Blender-IO/issues/",
+    "tracker_url": "https://github.com/zuggamasta/GPX-Importer/issues",
     "warning" : "",
     "category" : "Import-Export"
 }
