@@ -16,7 +16,7 @@ bl_info = {
     "author" : "zuggamasta",
     "description" : "",
     "blender" : (4, 0, 2),
-    "version" : (0, 1, 1),
+    "version" : (0, 1, 2),
     "location" : "",
     "tracker_url": "https://github.com/zuggamasta/GPX-Importer/issues",
     "warning" : "",
@@ -65,7 +65,13 @@ def read_gpx_data(context, filepath, use_create_edges, plot_elevation):
     
     xml = parse(filepath)
     trkpts = xml.getElementsByTagName("trkpt")
-    routename = xml.getElementsByTagName("name")[0].firstChild.nodeValue
+
+    try:
+        routename = xml.getElementsByTagName("name")[0].firstChild.nodeValue
+    except:
+        print("No route name found.")
+
+        routename = "untitled route"
 
     try:
         print("Importing: " + routename + " ...",end=' ')
