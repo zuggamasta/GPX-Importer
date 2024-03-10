@@ -28,7 +28,7 @@ import bpy
 from xml.dom.minidom import parse
 import bmesh
 
-# Use Bmesh to create a mesh from from datapoints
+# Use Bmesh to create a mesh from from data points
 def points_to_mesh(vertices,create_edges,object_name):
     
     # generate empty edges
@@ -53,11 +53,11 @@ def points_to_mesh(vertices,create_edges,object_name):
     # generate object
     gpx_object = bpy.data.objects.new(object_name, gpx_mesh)
 
-    # generaate new collection to add the object to
+    # generate new collection to add the object to
     gpx_collection = bpy.data.collections.new('gpx')
     bpy.context.scene.collection.children.link(gpx_collection)
 
-    # add the new meshyy
+    # add the new mesh
     gpx_collection.objects.link(gpx_object)
 
 
