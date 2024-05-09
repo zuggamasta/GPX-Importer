@@ -1,4 +1,7 @@
 # GPX-Importer
+![GitHub Release](https://img.shields.io/github/v/release/zuggamasta/GPX-Importer?include_prereleases&style=flat-square&logo=blender&logoColor=white) ![GitHub last commit](https://img.shields.io/github/last-commit/zuggamasta/GPX-Importer?style=flat-square) ![GitHub Repo stars](https://img.shields.io/github/stars/zuggamasta/GPX-Importer?style=flat-square)
+
+
 A python GPX importer with multi file support for blender.
 
 ![Large set of *.GPX rendered at once](_examples/preview.jpg)
