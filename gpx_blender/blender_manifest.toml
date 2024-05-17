@@ -1,0 +1,23 @@
+schema_version = "1.0.0"
+
+id = "gpx-importer"
+version = "0.1.3"
+name = "GPX-Importer"
+tagline = "A GPS Exchange Format (.gpx) importer for Blender."
+maintainer = "zuggamasta"
+
+type = "add-on"
+
+permissions = ["files"]
+
+website = "https://github.com/zuggamasta/GPX-Importer"
+
+tags = ["Import-Export", "Object"]
+
+blender_version_min = "3.6.2"
+
+# License conforming to https://spdx.org/licenses/ (use "SPDX: prefix)
+# https://docs.blender.org/manual/en/dev/extensions/licenses.html
+license = [
+  "SPDX:GPL-2.0-or-later",
+]
