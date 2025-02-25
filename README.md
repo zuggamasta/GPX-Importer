@@ -7,7 +7,7 @@ A python GPX importer with multi file support for blender.
 ![Large set of *.GPX rendered at once](_examples/preview.jpg)
 
 > [!note]
-> 1. This importer has currently been tested with *.GPX files exported from **Apple Health** & **Zepp**（formerly Amazfit
+> 1. This importer has currently been tested with *.GPX files exported from **Apple Health**, **Garmin Connect** and **Zepp**（formerly Amazfit
 > 2. This importer currently just plots latitude and longitude in Degrees as X and Y coordinates.
 
 ### How to use the Importer:
